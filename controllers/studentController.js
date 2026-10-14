@@ -1,3 +1,4 @@
+import e from 'express';
 import * as studentService from '../services/studentService.js';
 
 export const fetchallStudents = async (req, res) =>{
@@ -21,4 +22,28 @@ export const createStudent = async (req, res) => {
             error: "Internal Server Error"
         });
     }
+};
+
+//UPDATE STUDENT new
+export const editStudent = async (req, res) => {
+    const {name, srcode, program} = req.body;
+    const {id} = req.params;
+    const student = {id: parseInt(id), name, srcode, program};
+
+    try {
+        const updatedStudent = await studentService.updateStudent(student);
+        res.status(200).json({  
+
+            success: true,
+            message: updatedStudent
+        });
+    } catch(e) {
+        console.log(e);
+        res.status(500).json({  
+
+
+            error: "Internal Server Error"
+        });
+    }     
+
 };
