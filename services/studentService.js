@@ -14,3 +14,9 @@ export const updateStudent = async (student) => {
     const updatedStudent = await studentModel.update(student);
     return updatedStudent;
 }
+
+//delete
+export const deletestudent = async (id) => {
+    const deletestudent = await studentModel.remove(parseInt(id));
+    return deletestudent;
+}
